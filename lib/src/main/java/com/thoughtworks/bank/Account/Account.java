@@ -11,4 +11,8 @@ public class Account {
     public double getBalance() {
         return balance;
     }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
 }
