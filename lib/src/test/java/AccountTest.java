@@ -1,5 +1,6 @@
 import com.thoughtworks.bank.Account.Account;
 import com.thoughtworks.bank.Account.InvalidAccountNumberException;
+import com.thoughtworks.bank.Account.InvalidDebitAmountException;
 import com.thoughtworks.bank.Account.MinimumBalanceException;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,10 +37,15 @@ public class AccountTest {
     }
 
     @Test
-    public void checkDebitAmount() throws MinimumBalanceException, InvalidAccountNumberException {
+    public void checkDebitAmount() throws MinimumBalanceException, InvalidAccountNumberException, InvalidDebitAmountException {
         account = new Account("1234-5678",3000);
         assertThat(account.getBalance(),is(3000.0));
         account.debitAmount(1000);
         assertThat(account.getBalance(),is(2000.0));
+    }
+
+    @Test(expected = InvalidDebitAmountException.class)
+    public void validateDebitAction() throws InvalidDebitAmountException {
+        account.debitAmount(1000);
     }
 }

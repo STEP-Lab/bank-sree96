@@ -26,7 +26,11 @@ public class Account {
         return accountNumber;
     }
 
-    public void debitAmount(double amount) {
+    public void debitAmount(double amount) throws InvalidDebitAmountException {
         balance = balance - amount;
+        if (balance<2000) {
+            balance  = balance + amount;
+            throw new InvalidDebitAmountException();
+        }
     }
 }
