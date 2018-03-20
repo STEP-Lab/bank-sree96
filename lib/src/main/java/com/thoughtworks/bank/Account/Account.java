@@ -26,4 +26,7 @@ public class Account {
         return accountNumber;
     }
 
+    public void debitAmount(double amount) {
+        balance = balance - amount;
+    }
 }
