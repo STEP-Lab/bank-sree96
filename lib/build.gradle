@@ -4,6 +4,11 @@ buildscript {
 
 apply plugin: 'java'
 
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+
 jar {
     baseName = 'bank_account'
     version = '0.0.1-SNAPSHOT'
