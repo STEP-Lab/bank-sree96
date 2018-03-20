@@ -1,5 +1,5 @@
 .idea/
-*.xml
+*.iml
 build/
 .settings/
 .vscode/
