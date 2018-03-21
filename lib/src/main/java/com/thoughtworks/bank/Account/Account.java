@@ -33,4 +33,8 @@ public class Account {
             throw new InvalidDebitAmountException();
         }
     }
+
+    public void creditAmount(double amount) {
+        balance +=amount;
+    }
 }

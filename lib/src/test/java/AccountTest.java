@@ -19,25 +19,25 @@ public class AccountTest {
     }
 
     @Test
-    public void checkBalance() {
+    public void shouldGetBalance() {
         assertThat(account.getBalance(), is(2000.0));
     }
     @Test
-    public void checkAccountNumber() {
+    public void shouldGetAccountNumber() {
         assertThat(account.getAccountNumber(), is("1234-5678"));
     }
     @Test(expected = MinimumBalanceException.class)
-    public void checkMinimumBalance() throws MinimumBalanceException, InvalidAccountNumberException {
+    public void shouldThrowMinimumBalanceExceptionIfBalanceIsLessThanMinimum() throws MinimumBalanceException, InvalidAccountNumberException {
         new Account("1234-4563",200);
     }
 
     @Test(expected = InvalidAccountNumberException.class)
-    public void validateAccountNumber() throws MinimumBalanceException, InvalidAccountNumberException {
+    public void shouldThrowInvaidAccountNumberExceptionForInvalidAccountNumber() throws MinimumBalanceException, InvalidAccountNumberException {
         new Account("123-1233",3000);
     }
 
     @Test
-    public void checkDebitAmount() throws MinimumBalanceException, InvalidAccountNumberException, InvalidDebitAmountException {
+    public void shouldDebitAnAmountFromAccount() throws MinimumBalanceException, InvalidAccountNumberException, InvalidDebitAmountException {
         account = new Account("1234-5678",3000);
         assertThat(account.getBalance(),is(3000.0));
         account.debitAmount(1000);
@@ -45,7 +45,14 @@ public class AccountTest {
     }
 
     @Test(expected = InvalidDebitAmountException.class)
-    public void validateDebitAction() throws InvalidDebitAmountException {
+    public void shouldThrowInvalidDebitAmountExceptionIfDebitIsInvalid() throws InvalidDebitAmountException {
         account.debitAmount(1000);
+    }
+
+    @Test
+    public void shouldCreditAmountToAnAccount() {
+        assertThat(account.getBalance(),is(2000.0));
+        account.creditAmount(1000);
+        assertThat(account.getBalance(),is(3000.0));
     }
 }
