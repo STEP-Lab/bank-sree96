@@ -1,7 +1,5 @@
-import com.thoughtworks.bank.Account.Account;
-import com.thoughtworks.bank.Account.InvalidAccountNumberException;
-import com.thoughtworks.bank.Account.InvalidDebitAmountException;
-import com.thoughtworks.bank.Account.MinimumBalanceException;
+package com.thoughtworks.bank.Account;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,30 +13,21 @@ public class AccountTest {
 
     @Before
     public void setUp() throws MinimumBalanceException, InvalidAccountNumberException {
-        account = new Account("1234-5678", 2000);
+        account = new Account(new AccountNumber("1234-5678"), 2000);
     }
 
     @Test
     public void shouldGetBalance() {
         assertThat(account.getBalance(), is(2000.0));
     }
-    @Test
-    public void shouldGetAccountNumber() {
-        assertThat(account.getAccountNumber(), is("1234-5678"));
-    }
     @Test(expected = MinimumBalanceException.class)
     public void shouldThrowMinimumBalanceExceptionIfBalanceIsLessThanMinimum() throws MinimumBalanceException, InvalidAccountNumberException {
-        new Account("1234-4563",200);
-    }
-
-    @Test(expected = InvalidAccountNumberException.class)
-    public void shouldThrowInvaidAccountNumberExceptionForInvalidAccountNumber() throws MinimumBalanceException, InvalidAccountNumberException {
-        new Account("123-1233",3000);
+        new Account(new AccountNumber("1234-5678"),200);
     }
 
     @Test
     public void shouldDebitAnAmountFromAccount() throws MinimumBalanceException, InvalidAccountNumberException, InvalidDebitAmountException {
-        account = new Account("1234-5678",3000);
+        account = new Account(new AccountNumber("1234-5678"),3000);
         assertThat(account.getBalance(),is(3000.0));
         account.debitAmount(1000);
         assertThat(account.getBalance(),is(2000.0));
