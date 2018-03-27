@@ -9,13 +9,24 @@ public class Transactions {
         this.transactions = new ArrayList<Transaction>();
     }
 
-    public void debit(double amount, String to) {
+    public void debit(Money amount, String to) throws InvalidAmountException {
         Transaction debit = new Debit(amount,to);
         transactions.add(debit);
     }
 
-    public void credit(double amount, String from) {
+    public void credit(Money amount, String from) throws InvalidAmountException {
         Transaction credit = new Credit(amount, from);
         transactions.add(credit);
+    }
+
+    public ArrayList<Transaction> getTransactionsAbove(Money money) {
+        ArrayList<Transaction> transactions=new ArrayList<>();
+        int length=this.transactions.size();
+        for (int i=0;i<length;i++){
+            if (this.transactions.get(i).getAmount()>money.getMoney()){
+                transactions.add(this.transactions.get(i));
+            }
+        }
+        return transactions;
     }
 }

@@ -3,10 +3,10 @@ package com.thoughtworks.bank.Account;
 import java.util.Date;
 
 public class Credit extends Transaction{
-    public Credit(Date date, double amount, String from) {
+    public Credit(Date date, Money amount, String from) throws InvalidAmountException {
         super(date,amount,from);
     }
-    protected Credit(double amount,String from){
+    protected Credit(Money amount, String from) throws InvalidAmountException {
         this(new Date(),amount,from);
     }
 }

@@ -9,9 +9,9 @@ import static org.junit.Assert.assertThat;
 
 public class TransactionTest {
     @Test
-    public void shouldRecordADebitTransaction() {
+    public void shouldRecordADebitTransaction() throws InvalidAmountException {
         Date date = new Date();
-        Debit debit = new Debit(date, 1000,"hari");
+        Debit debit = new Debit(date, new Money(1000),"hari");
         assertThat(debit.getDate(),is(date));
     }
 }
