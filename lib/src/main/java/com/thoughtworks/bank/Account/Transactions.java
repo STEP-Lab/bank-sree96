@@ -19,12 +19,21 @@ public class Transactions {
         transactions.add(credit);
     }
 
-    public ArrayList<Transaction> getTransactionsAbove(Money money) {
-        ArrayList<Transaction> transactions=new ArrayList<>();
-        int length=this.transactions.size();
-        for (int i=0;i<length;i++){
-            if (this.transactions.get(i).getAmount()>money.getMoney()){
-                transactions.add(this.transactions.get(i));
+    public Transactions getTransactionsAbove(Money money) {
+        Transactions transactions=new Transactions();
+        for (Transaction transaction : this.transactions){
+            if (transaction.getAmount()>money.getMoney()){
+                transactions.transactions.add(transaction);
+            }
+        }
+        return transactions;
+    }
+
+    public Transactions getTransactionsBelow(Money money) {
+        Transactions transactions=new Transactions();
+        for (Transaction transaction : this.transactions){
+            if (transaction.getAmount()<money.getMoney()){
+                transactions.transactions.add(transaction);
             }
         }
         return transactions;
