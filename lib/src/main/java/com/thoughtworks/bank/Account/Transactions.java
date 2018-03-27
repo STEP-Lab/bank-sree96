@@ -38,4 +38,24 @@ public class Transactions {
         }
         return transactions;
     }
+
+    public Transactions getCreditTransactions() {
+        Transactions transactions=new Transactions();
+        for (Transaction transaction : this.transactions){
+            if (transaction instanceof Credit){
+                transactions.transactions.add(transaction);
+            }
+        }
+        return transactions;
+    }
+
+    public Transactions getDebitTransactions() {
+        Transactions transactions=new Transactions();
+        for (Transaction transaction : this.transactions){
+            if (transaction instanceof Debit){
+                transactions.transactions.add(transaction);
+            }
+        }
+        return transactions;
+    }
 }

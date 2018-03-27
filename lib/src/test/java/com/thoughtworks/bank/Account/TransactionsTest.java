@@ -53,4 +53,25 @@ public class TransactionsTest {
         Debit debit = new Debit(new Date(), new Money(5500), "sree");
         assertThat(tr.transactions,hasItems(credit,debit));
     }
+    @Test
+    public void shouldReturnTransactionsOfCreditType() throws InvalidAmountException {
+        transactions.credit(new Money(10000),"sree");
+        transactions.credit(new Money(6000),"sree");
+        transactions.debit(new Money(5500),"sree");
+        Transactions tr =transactions.getCreditTransactions();
+        Credit cr1 = new Credit(new Date(), new Money(10000), "sree");
+        Credit cr2 = new Credit(new Date(), new Money(6000), "sree");
+        assertThat(tr.transactions,hasItems(cr1,cr2));
+    }
+    @Test
+    public void shouldReturnTransactionsOfDebitType() throws InvalidAmountException {
+        transactions.credit(new Money(10000),"sree");
+        transactions.debit(new Money(600),"sree");
+        transactions.debit(new Money(5500),"sree");
+        Transactions tr =transactions.getDebitTransactions();
+        Debit db1 = new Debit(new Date(), new Money(5500), "sree");
+        Debit db2 = new Debit(new Date(), new Money(600), "sree");
+        assertThat(tr.transactions,hasItems(db1,db2));
+    }
+    
 }
