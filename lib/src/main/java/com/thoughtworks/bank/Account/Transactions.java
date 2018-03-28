@@ -60,12 +60,6 @@ public class Transactions {
         return transactions;
     }
 
-    public void print(PrintWriter writer) {
-        for (Transaction transaction : transactions){
-            writer.println(transaction.getInCsv());
-        }
-    }
-
     public void writeToCsv(PrintWriter writer) {
         String header = "date,type,amount,source\n";
         writer.print(header);
