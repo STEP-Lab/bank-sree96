@@ -1,5 +1,6 @@
 package com.thoughtworks.bank.Account;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Transactions {
@@ -57,5 +58,21 @@ public class Transactions {
             }
         }
         return transactions;
+    }
+
+    public void print(PrintWriter writer) {
+        for (Transaction transaction : transactions){
+            writer.println(transaction.getInCsv());
+        }
+    }
+
+    public void writeToCsv(PrintWriter writer) {
+        String header = "date,type,amount,source\n";
+        writer.print(header);
+        for (Transaction transaction : transactions){
+            String tr = transaction.getInCsv();
+            writer.print(tr);
+        }
+        writer.close();
     }
 }

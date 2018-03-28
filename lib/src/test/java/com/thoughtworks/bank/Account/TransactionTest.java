@@ -14,4 +14,5 @@ public class TransactionTest {
         Debit debit = new Debit(date, new Money(1000),"hari");
         assertThat(debit.getDate(),is(date));
     }
+
 }
